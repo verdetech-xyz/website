@@ -47,11 +47,47 @@ onMounted(() => {
       <div class="grid md:grid-cols-2 gap-12 mb-16">
         <div class="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
           <h2 class="text-2xl font-bold mb-4">{{ t('stack.title') }}</h2>
-          <ul class="space-y-2">
-            <li>{{ t('stack.frontend') }}</li>
-            <li>{{ t('stack.backend') }}</li>
-            <li>{{ t('stack.mobile') }}</li>
-          </ul>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Frontend -->
+            <div class="text-center">
+              <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="h-16 w-auto mx-auto" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/vuejs/art/master/logo.png';" />
+                <p class="text-sm mt-2">Vue.js</p>
+              </a>
+            </div>
+            <div class="text-center">
+              <a href="https://nuxt.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" alt="Nuxt.js" class="h-16 w-auto mx-auto" />
+                <p class="text-sm mt-2">Nuxt.js</p>
+              </a>
+            </div>
+            <!-- Backend -->
+            <div class="text-center">
+              <a href="https://laravel.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="h-16 w-auto mx-auto" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/laravel/art/master/laravel-logo.png';" />
+                <p class="text-sm mt-2">Laravel</p>
+              </a>
+            </div>
+            <div class="text-center">
+              <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="h-16 w-auto mx-auto" />
+                <p class="text-sm mt-2">Node.js</p>
+              </a>
+            </div>
+            <!-- Mobile -->
+            <div class="text-center">
+              <a href="https://web.dev/progressive-web-apps/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-16 w-auto mx-auto" />
+                <p class="text-sm mt-2">PWA</p>
+              </a>
+            </div>
+            <div class="text-center">
+              <a href="https://ionicframework.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" alt="Hybrid Apps" class="h-16 w-auto mx-auto" />
+                <p class="text-sm mt-2">Hybrid Apps</p>
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg">
