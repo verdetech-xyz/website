@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useForm } from '../composables/useForm';
 
 const { t } = useI18n();
 const isLoading = ref(false);
+const textarea = ref<HTMLTextAreaElement | null>(null);
 
 const {
   form,
@@ -15,6 +16,19 @@ const {
 
 const showEmail = computed(() => form.name.length > 0);
 const showCompany = computed(() => form.email.length > 0);
+
+const adjustTextareaHeight = () => {
+  if (textarea.value) {
+    textarea.value.style.height = 'auto';
+    textarea.value.style.height = textarea.value.scrollHeight + 'px';
+  }
+};
+
+onMounted(() => {
+  if (textarea.value) {
+    textarea.value.addEventListener('input', adjustTextareaHeight);
+  }
+});
 
 const handleSubmit = async () => {
   if (!validateForm()) return;
@@ -34,7 +48,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg space-y-6">
+  <form @submit.prevent="handleSubmit" class="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg space-y-6">
     <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.name') }}*</label>
       <input
@@ -117,10 +131,11 @@ const handleSubmit = async () => {
     <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.requirements') }}*</label>
       <textarea
+        ref="textarea"
         v-model="form.requirements"
         required
-        rows="8"
-        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        rows="3"
+        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 min-h-[100px]"
         :class="{ 'border-red-500': errors.requirements }"
       ></textarea>
       <p v-if="errors.requirements" class="text-red-500 text-sm mt-1">{{ errors.requirements }}</p>

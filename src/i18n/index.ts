@@ -3,18 +3,39 @@ import { createI18n } from 'vue-i18n';
 const messages = {
   en: {
     brand: {
-      name: 'WebStudio'
+      name: 'VerdeTech'
     },
     hero: {
-      title: 'Create Your Dream Website',
-      subtitle: 'Fill out our briefing form to start your journey'
+      title: 'Global Vue.js & Laravel Experts',
+      subtitle: 'High-performance solutions for clients worldwide',
+      description: 'Specialists in Vue.js, Nuxt, Laravel, and JavaScript, we develop high-performance solutions for clients worldwide. Our Brazilian team combines technical expertise with understanding of international demands.'
+    },
+    stack: {
+      title: 'Main Stack',
+      frontend: 'Front-end: Vue.js, Nuxt.js',
+      backend: 'Back-end: Laravel, Node.js',
+      mobile: 'Mobile: PWAs and hybrid applications'
+    },
+    advantages: {
+      title: 'Our Advantages',
+      global: '✅ Global experience - serving clients in America, Europe, and Asia',
+      code: '✅ Universal code - following international standards',
+      communication: '✅ Multicultural communication (English, Portuguese, Spanish)',
+      compliance: '✅ GDPR and LGPD compliance'
+    },
+    whyUs: {
+      title: 'Why Choose Us?',
+      description: 'We combine the best of Brazilian development with the ability to deliver projects for any market. Your software will be built with:',
+      scalable: 'Scalable architecture',
+      performance: 'Optimized performance',
+      integrations: 'Efficient integrations',
+      slogan: 'From Brazil to the world: code that transcends borders.'
     },
     form: {
       name: 'Name',
       email: 'Email',
       company: 'Company',
-      budget: 'Budget Range',
-      selectBudget: 'Select budget range',
+      budget: 'Budget (USD)',
       timeline: 'Timeline',
       oneMonth: '1 Month',
       twoMonths: '2 Months',
@@ -28,18 +49,39 @@ const messages = {
   },
   pt: {
     brand: {
-      name: 'WebStudio'
+      name: 'VerdeTech'
     },
     hero: {
-      title: 'Crie o Site dos Seus Sonhos',
-      subtitle: 'Preencha nosso briefing para começar sua jornada'
+      title: 'Especialistas Globais em Vue.js & Laravel',
+      subtitle: 'Soluções de alto desempenho para clientes em todo o mundo',
+      description: 'Especialistas em Vue.js, Nuxt, Laravel e JavaScript, desenvolvemos soluções de alto desempenho para clientes em todo o mundo. Nossa equipe brasileira combina expertise técnica com entendimento das demandas internacionais.'
+    },
+    stack: {
+      title: 'Stack Principal',
+      frontend: 'Front-end: Vue.js, Nuxt.js',
+      backend: 'Back-end: Laravel, Node.js',
+      mobile: 'Mobile: PWAs e aplicações híbridas'
+    },
+    advantages: {
+      title: 'Nossos Diferenciais',
+      global: '✅ Experiência global - atendemos clientes na América, Europa e Ásia',
+      code: '✅ Código universal - seguindo padrões internacionais',
+      communication: '✅ Comunicação multicultural (inglês, português, espanhol)',
+      compliance: '✅ Conformidade com GDPR e LGPD'
+    },
+    whyUs: {
+      title: 'Por que nos escolher?',
+      description: 'Unimos o melhor do desenvolvimento brasileiro com a capacidade de entregar projetos para qualquer mercado. Seu software será construído com:',
+      scalable: 'Arquitetura escalável',
+      performance: 'Performance otimizada',
+      integrations: 'Integrações eficientes',
+      slogan: 'Do Brasil para o mundo: código que ultrapassa fronteiras.'
     },
     form: {
       name: 'Nome',
       email: 'Email',
       company: 'Empresa',
-      budget: 'Faixa de Orçamento',
-      selectBudget: 'Selecione a faixa de orçamento',
+      budget: 'Orçamento (USD)',
       timeline: 'Prazo',
       oneMonth: '1 Mês',
       twoMonths: '2 Meses',
