@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useForm } from '../composables/useForm';
 
@@ -12,6 +12,9 @@ const {
   validateForm,
   resetForm
 } = useForm();
+
+const showEmail = computed(() => form.name.length > 0);
+const showCompany = computed(() => form.email.length > 0);
 
 const handleSubmit = async () => {
   if (!validateForm()) return;
@@ -44,7 +47,7 @@ const handleSubmit = async () => {
       <p v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</p>
     </div>
 
-    <div>
+    <div v-if="showEmail">
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.email') }}*</label>
       <input
         v-model="form.email"
@@ -56,7 +59,7 @@ const handleSubmit = async () => {
       <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
     </div>
 
-    <div>
+    <div v-if="showCompany">
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.company') }}</label>
       <input
         v-model="form.company"
@@ -67,16 +70,14 @@ const handleSubmit = async () => {
 
     <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.budget') }}*</label>
-      <select
+      <input
         v-model="form.budget"
+        type="number"
         required
+        min="1000"
+        step="1000"
         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
       >
-        <option value="">{{ t('form.selectBudget') }}</option>
-        <option value="small">$1,000 - $5,000</option>
-        <option value="medium">$5,000 - $10,000</option>
-        <option value="large">$10,000+</option>
-      </select>
     </div>
 
     <div>
@@ -118,7 +119,7 @@ const handleSubmit = async () => {
       <textarea
         v-model="form.requirements"
         required
-        rows="5"
+        rows="8"
         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
         :class="{ 'border-red-500': errors.requirements }"
       ></textarea>
