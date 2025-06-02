@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BriefingForm from './components/BriefingForm.vue';
+import verdeTechLogo from './assets/verdetech.png';
 
 const { t } = useI18n();
 
@@ -16,7 +17,7 @@ onMounted(() => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <img src="/verdetech.png" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
+            <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
             <span class="text-xl font-bold text-gray-800">{{ t('brand.name') }}</span>
           </div>
           <div class="flex items-center space-x-4">
@@ -72,7 +73,7 @@ onMounted(() => {
     <footer class="bg-gray-800 text-white mt-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex items-center justify-center">
-          <img src="/verdetech.png" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
+          <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
           <p>&copy; 2023 {{ t('brand.name') }}</p>
         </div>
       </div>
