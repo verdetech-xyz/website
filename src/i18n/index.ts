@@ -102,7 +102,7 @@ const messages = {
       nuxt: 'Nuxt',
       laravel: 'Laravel',
       vuejs: 'Vue.js',
-      budget: 'Orçamento (USD)',
+      budget: 'Orçamento (BRL)',
       timeline: 'Prazo',
       oneWeek: '1 Semana',
       twoWeeks: '2 Semanas',

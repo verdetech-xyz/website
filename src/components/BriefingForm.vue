@@ -32,7 +32,7 @@ onMounted(() => {
 
 const handleSubmit = async () => {
   if (!validateForm()) return;
-  
+
   isLoading.value = true;
   try {
     // Simulate API call
@@ -55,7 +55,7 @@ const handleSubmit = async () => {
         v-model="form.name"
         type="text"
         required
-        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none"
         :class="{ 'border-red-500': errors.name }"
       >
       <p v-if="errors.name" class="text-red-500 text-sm mt-1">{{ errors.name }}</p>
@@ -67,7 +67,7 @@ const handleSubmit = async () => {
         v-model="form.email"
         type="email"
         required
-        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none"
         :class="{ 'border-red-500': errors.email }"
       >
       <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
@@ -78,7 +78,7 @@ const handleSubmit = async () => {
       <input
         v-model="form.company"
         type="text"
-        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        class="w-full px-4 py-2 border rounded-lg focus:outline-none"
       >
     </div>
 
@@ -91,7 +91,7 @@ const handleSubmit = async () => {
             v-model="form.siteType"
             value="institutional"
             required
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.institutional') }}
         </label>
@@ -100,7 +100,7 @@ const handleSubmit = async () => {
             type="radio"
             v-model="form.siteType"
             value="landing_page"
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.landingPage') }}
         </label>
@@ -109,7 +109,7 @@ const handleSubmit = async () => {
             type="radio"
             v-model="form.siteType"
             value="ecommerce"
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.ecommerce') }}
         </label>
@@ -118,7 +118,7 @@ const handleSubmit = async () => {
             type="radio"
             v-model="form.siteType"
             value="blog"
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.blog') }}
         </label>
@@ -133,61 +133,56 @@ const handleSubmit = async () => {
           <input
             type="checkbox"
             v-model="form.technologies"
-            value="wordpress"
-            class="mr-2"
+            value="vuejs"
+            class="mr-2 focus:outline-none"
           >
-          {{ t('form.wordpress') }}
+          {{ t('form.vuejs') }}
         </label>
         <label class="flex items-center">
           <input
-            type="checkbox"
-            v-model="form.technologies"
-            value="ecommerce"
-            class="mr-2"
-          >
-          {{ t('form.ecommerce') }}
-        </label>
-        <label class="flex items-center">
-          <input
-            type="checkbox"
-            v-model="form.technologies"
-            value="nuxt"
-            class="mr-2"
+          type="checkbox"
+          v-model="form.technologies"
+          value="nuxt"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.nuxt') }}
         </label>
         <label class="flex items-center">
           <input
-            type="checkbox"
-            v-model="form.technologies"
+          type="checkbox"
+          v-model="form.technologies"
             value="laravel"
-            class="mr-2"
-          >
-          {{ t('form.laravel') }}
-        </label>
-        <label class="flex items-center">
-          <input
-            type="checkbox"
-            v-model="form.technologies"
-            value="vuejs"
-            class="mr-2"
-          >
-          {{ t('form.vuejs') }}
-        </label>
-      </div>
-      <p v-if="errors.technologies" class="text-red-500 text-sm mt-1">{{ errors.technologies }}</p>
+            class="mr-2 focus:outline-none"
+            >
+            {{ t('form.laravel') }}
+          </label>
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              v-model="form.technologies"
+              value="wordpress"
+              class="mr-2 focus:outline-none"
+            >
+            {{ t('form.wordpress') }}
+          </label>
+        </div>
+        <p v-if="errors.technologies" class="text-red-500 text-sm mt-1">{{ errors.technologies }}</p>
     </div>
 
     <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.budget') }}*</label>
-      <input
-        v-model="form.budget"
-        type="number"
-        required
-        min="1000"
-        step="1000"
-        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-      >
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span class="text-gray-500">{{ $i18n.locale === 'en' ? '$' : 'R$' }}</span>
+        </div>
+        <input
+          v-model="form.budget"
+          type="number"
+          required
+          :min="$i18n.locale === 'en' ? 50 : 200"
+          class="w-full pl-10 px-4 py-2 border rounded-lg focus:outline-none"
+        >
+      </div>
     </div>
 
     <div>
@@ -199,7 +194,7 @@ const handleSubmit = async () => {
             v-model="form.timeline"
             value="1_week"
             required
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.oneWeek') }}
         </label>
@@ -208,7 +203,7 @@ const handleSubmit = async () => {
             type="radio"
             v-model="form.timeline"
             value="2_weeks"
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.twoWeeks') }}
         </label>
@@ -217,7 +212,7 @@ const handleSubmit = async () => {
             type="radio"
             v-model="form.timeline"
             value="1_month"
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.oneMonth') }}
         </label>
@@ -226,7 +221,7 @@ const handleSubmit = async () => {
             type="radio"
             v-model="form.timeline"
             value="2_months"
-            class="mr-2"
+            class="mr-2 focus:outline-none"
           >
           {{ t('form.twoMonths') }}
         </label>
@@ -240,7 +235,7 @@ const handleSubmit = async () => {
         v-model="form.requirements"
         required
         rows="3"
-        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+        class="w-full px-4 py-2 border rounded-lg min-h-[100px] focus:outline-none"
         :class="{ 'border-red-500': errors.requirements }"
       ></textarea>
       <p v-if="errors.requirements" class="text-red-500 text-sm mt-1">{{ errors.requirements }}</p>
@@ -248,7 +243,7 @@ const handleSubmit = async () => {
 
     <button
       type="submit"
-      class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+      class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition focus:outline-none"
       :disabled="isLoading"
     >
       <span v-if="isLoading">{{ t('form.submitting') }}...</span>

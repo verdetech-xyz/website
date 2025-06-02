@@ -50,39 +50,39 @@ onMounted(() => {
           <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <!-- Frontend -->
             <div class="text-center">
-              <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer">
+              <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="h-16 w-auto mx-auto" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/vuejs/art/master/logo.png';" />
                 <p class="text-sm mt-2">Vue.js</p>
               </a>
             </div>
             <div class="text-center">
-              <a href="https://nuxt.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://nuxt.com/" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg" alt="Nuxt.js" class="h-16 w-auto mx-auto" />
                 <p class="text-sm mt-2">Nuxt.js</p>
               </a>
             </div>
             <!-- Backend -->
             <div class="text-center">
-              <a href="https://laravel.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://laravel.com/" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="h-16 w-auto mx-auto" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/laravel/art/master/laravel-logo.png';" />
                 <p class="text-sm mt-2">Laravel</p>
               </a>
             </div>
             <div class="text-center">
-              <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">
+              <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="h-16 w-auto mx-auto" />
                 <p class="text-sm mt-2">Node.js</p>
               </a>
             </div>
             <!-- Mobile -->
             <div class="text-center">
-              <a href="https://web.dev/progressive-web-apps/" target="_blank" rel="noopener noreferrer">
+              <a href="https://web.dev/progressive-web-apps/" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-16 w-auto mx-auto" />
                 <p class="text-sm mt-2">PWA</p>
               </a>
             </div>
             <div class="text-center">
-              <a href="https://ionicframework.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://ionicframework.com/" target="_blank" rel="noopener noreferrer" class="focus:outline-none">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" alt="Hybrid Apps" class="h-16 w-auto mx-auto" />
                 <p class="text-sm mt-2">Hybrid Apps</p>
               </a>
