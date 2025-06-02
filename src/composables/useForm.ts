@@ -4,6 +4,8 @@ interface Form {
   name: string;
   email: string;
   company: string;
+  siteType: string;
+  technologies: string[];
   budget: string;
   timeline: string;
   requirements: string;
@@ -12,6 +14,8 @@ interface Form {
 interface FormErrors {
   name?: string;
   email?: string;
+  siteType?: string;
+  technologies?: string;
   requirements?: string;
 }
 
@@ -20,6 +24,8 @@ export function useForm() {
     name: '',
     email: '',
     company: '',
+    siteType: '',
+    technologies: [],
     budget: '',
     timeline: '',
     requirements: ''
@@ -30,6 +36,8 @@ export function useForm() {
   const validateForm = (): boolean => {
     errors.name = '';
     errors.email = '';
+    errors.siteType = '';
+    errors.technologies = '';
     errors.requirements = '';
 
     let isValid = true;
@@ -47,6 +55,16 @@ export function useForm() {
       isValid = false;
     }
 
+    if (!form.siteType) {
+      errors.siteType = 'Site type is required';
+      isValid = false;
+    }
+
+    if (form.technologies.length === 0) {
+      errors.technologies = 'At least one technology must be selected';
+      isValid = false;
+    }
+
     if (!form.requirements) {
       errors.requirements = 'Requirements are required';
       isValid = false;
@@ -60,7 +78,11 @@ export function useForm() {
 
   const resetForm = () => {
     Object.keys(form).forEach(key => {
-      form[key as keyof Form] = '';
+      if (key === 'technologies') {
+        form[key] = [];
+      } else {
+        form[key as keyof Form] = '';
+      }
     });
     Object.keys(errors).forEach(key => {
       delete errors[key as keyof FormErrors];

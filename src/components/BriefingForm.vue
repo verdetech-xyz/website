@@ -83,6 +83,102 @@ const handleSubmit = async () => {
     </div>
 
     <div>
+      <label class="block text-gray-700 font-medium mb-2">{{ t('form.siteType') }}*</label>
+      <div class="grid grid-cols-2 gap-4">
+        <label class="flex items-center">
+          <input
+            type="radio"
+            v-model="form.siteType"
+            value="institutional"
+            required
+            class="mr-2"
+          >
+          {{ t('form.institutional') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="radio"
+            v-model="form.siteType"
+            value="landing_page"
+            class="mr-2"
+          >
+          {{ t('form.landingPage') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="radio"
+            v-model="form.siteType"
+            value="ecommerce"
+            class="mr-2"
+          >
+          {{ t('form.ecommerce') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="radio"
+            v-model="form.siteType"
+            value="blog"
+            class="mr-2"
+          >
+          {{ t('form.blog') }}
+        </label>
+      </div>
+      <p v-if="errors.siteType" class="text-red-500 text-sm mt-1">{{ errors.siteType }}</p>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-2">{{ t('form.technologies') }}*</label>
+      <div class="grid grid-cols-2 gap-4">
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            v-model="form.technologies"
+            value="wordpress"
+            class="mr-2"
+          >
+          {{ t('form.wordpress') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            v-model="form.technologies"
+            value="ecommerce"
+            class="mr-2"
+          >
+          {{ t('form.ecommerce') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            v-model="form.technologies"
+            value="nuxt"
+            class="mr-2"
+          >
+          {{ t('form.nuxt') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            v-model="form.technologies"
+            value="laravel"
+            class="mr-2"
+          >
+          {{ t('form.laravel') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            v-model="form.technologies"
+            value="vuejs"
+            class="mr-2"
+          >
+          {{ t('form.vuejs') }}
+        </label>
+      </div>
+      <p v-if="errors.technologies" class="text-red-500 text-sm mt-1">{{ errors.technologies }}</p>
+    </div>
+
+    <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.budget') }}*</label>
       <input
         v-model="form.budget"
@@ -96,13 +192,31 @@ const handleSubmit = async () => {
 
     <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.timeline') }}*</label>
-      <div class="grid grid-cols-3 gap-4">
+      <div class="grid grid-cols-2 gap-4">
+        <label class="flex items-center">
+          <input
+            type="radio"
+            v-model="form.timeline"
+            value="1_week"
+            required
+            class="mr-2"
+          >
+          {{ t('form.oneWeek') }}
+        </label>
+        <label class="flex items-center">
+          <input
+            type="radio"
+            v-model="form.timeline"
+            value="2_weeks"
+            class="mr-2"
+          >
+          {{ t('form.twoWeeks') }}
+        </label>
         <label class="flex items-center">
           <input
             type="radio"
             v-model="form.timeline"
             value="1_month"
-            required
             class="mr-2"
           >
           {{ t('form.oneMonth') }}
@@ -115,15 +229,6 @@ const handleSubmit = async () => {
             class="mr-2"
           >
           {{ t('form.twoMonths') }}
-        </label>
-        <label class="flex items-center">
-          <input
-            type="radio"
-            v-model="form.timeline"
-            value="3_months"
-            class="mr-2"
-          >
-          {{ t('form.threeMonths') }}
         </label>
       </div>
     </div>
