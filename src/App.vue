@@ -4,6 +4,9 @@ import { useI18n } from 'vue-i18n';
 import BriefingForm from './components/BriefingForm.vue';
 import verdeTechLogo from './assets/verdetech.png';
 
+const usFlag = 'https://flagicons.lipis.dev/flags/4x3/us.svg';
+const brFlag = 'https://flagicons.lipis.dev/flags/4x3/br.svg';
+
 const { t } = useI18n();
 
 onMounted(() => {
@@ -17,12 +20,18 @@ onMounted(() => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
-            <span class="text-xl font-bold text-gray-800">{{ t('brand.name') }}</span>
+            <a href="/" class="flex">
+              <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-12 w-auto mr-2" />
+              <span class="text-xl font-bold text-green-400 pt-3">Verde<span class="text-blue-600">Tech</span></span>
+            </a>
           </div>
           <div class="flex items-center space-x-4">
-            <button @click="$i18n.locale = 'en'" :class="{ 'font-bold': $i18n.locale === 'en' }">EN</button>
-            <button @click="$i18n.locale = 'pt'" :class="{ 'font-bold': $i18n.locale === 'pt' }">PT</button>
+            <button @click="$i18n.locale = 'en'" class="p-1 rounded">
+              <img :src="usFlag" alt="English" class="h-6 w-auto" :class="{ 'grayscale opacity-50': $i18n.locale !== 'en' }" />
+            </button>
+            <button @click="$i18n.locale = 'pt'" class="p-1 rounded">
+              <img :src="brFlag" alt="Português" class="h-6 w-auto" :class="{ 'grayscale opacity-50': $i18n.locale !== 'pt' }" />
+            </button>
           </div>
         </div>
       </div>
@@ -74,7 +83,7 @@ onMounted(() => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex items-center justify-center">
           <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
-          <p>&copy; 2023 {{ t('brand.name') }}</p>
+          <p class="pt-2">&copy; {{ new Date().getFullYear() }} {{ t('brand.name') }}</p>
         </div>
       </div>
     </footer>
