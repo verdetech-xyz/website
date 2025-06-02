@@ -56,6 +56,15 @@ const messages = {
       submitting: 'Submitting',
       success: 'Form submitted successfully!',
       error: 'An error occurred. Please try again.'
+    },
+    errors: {
+      nameRequired: 'Name is required',
+      emailRequired: 'Email is required',
+      emailInvalid: 'Invalid email format',
+      siteTypeRequired: 'Site type is required',
+      technologiesRequired: 'At least one technology must be selected',
+      requirementsRequired: 'Requirements are required',
+      requirementsLength: 'Requirements must be at least 125 characters'
     }
   },
   pt: {
@@ -113,13 +122,53 @@ const messages = {
       submitting: 'Enviando',
       success: 'Formulário enviado com sucesso!',
       error: 'Ocorreu um erro. Por favor, tente novamente.'
+    },
+    errors: {
+      nameRequired: 'Nome é obrigatório',
+      emailRequired: 'Email é obrigatório',
+      emailInvalid: 'Formato de email inválido',
+      siteTypeRequired: 'Tipo de site é obrigatório',
+      technologiesRequired: 'Pelo menos uma tecnologia deve ser selecionada',
+      requirementsRequired: 'Os requisitos são obrigatórios',
+      requirementsLength: 'Os requisitos devem ter pelo menos 125 caracteres'
     }
   }
 };
 
+// Função para detectar se o usuário está vindo do Brasil
+function isUserFromBrazil() {
+  // Verifica se estamos no navegador
+  if (typeof navigator !== 'undefined') {
+    // Opção 1: Verificar pelo idioma do navegador
+    const userLanguage = navigator.language || (navigator as any).userLanguage;
+    if (userLanguage && userLanguage.toLowerCase().startsWith('pt-br')) {
+      return true;
+    }
+
+    // Opção 2: Verificar pelo timezone (funciona mesmo se o idioma do navegador não for pt-BR)
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (timezone && timezone.includes('Brasilia') || timezone.includes('Brazil')) {
+      return true;
+    }
+
+    // Opção 3: Utilizando a API de geolocalização (apenas detecção, não armazenamento)
+    // Esta opção requer permissão do usuário, então não é usada como verificação principal
+  }
+  
+  return false;
+}
+
+// Determinar o idioma com base na localização do usuário
+const detectedLocale = isUserFromBrazil() ? 'pt' : 'en';
+
 export const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: detectedLocale, // Usa o idioma detectado automaticamente
   fallbackLocale: 'en',
   messages
 });
+
+// Exporta uma função para mudar o idioma manualmente, se necessário
+export function setLanguage(locale: string) {
+  i18n.global.locale.value = locale;
+}

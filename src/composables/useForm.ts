@@ -1,4 +1,5 @@
 import { ref, reactive } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 interface Form {
   name: string;
@@ -20,6 +21,8 @@ interface FormErrors {
 }
 
 export function useForm() {
+  const { t } = useI18n();
+  
   const form = reactive<Form>({
     name: '',
     email: '',
@@ -43,33 +46,33 @@ export function useForm() {
     let isValid = true;
 
     if (!form.name) {
-      errors.name = 'Name is required';
+      errors.name = t('errors.nameRequired');
       isValid = false;
     }
 
     if (!form.email) {
-      errors.email = 'Email is required';
+      errors.email = t('errors.emailRequired');
       isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      errors.email = 'Invalid email format';
+      errors.email = t('errors.emailInvalid');
       isValid = false;
     }
 
     if (!form.siteType) {
-      errors.siteType = 'Site type is required';
+      errors.siteType = t('errors.siteTypeRequired');
       isValid = false;
     }
 
     if (form.technologies.length === 0) {
-      errors.technologies = 'At least one technology must be selected';
+      errors.technologies = t('errors.technologiesRequired');
       isValid = false;
     }
 
     if (!form.requirements) {
-      errors.requirements = 'Requirements are required';
+      errors.requirements = t('errors.requirementsRequired');
       isValid = false;
     } else if (form.requirements.length < 125) {
-      errors.requirements = 'Requirements must be at least 125 characters';
+      errors.requirements = t('errors.requirementsLength');
       isValid = false;
     }
 

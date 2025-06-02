@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { setLanguage } from './i18n';
 import BriefingForm from './components/BriefingForm.vue';
 import verdeTechLogo from './assets/verdetech.png';
 
@@ -26,10 +27,10 @@ onMounted(() => {
             </a>
           </div>
           <div class="flex items-center space-x-4">
-            <button @click="$i18n.locale = 'en'" class="p-1 rounded">
+            <button @click="setLanguage('en')" class="p-1 rounded">
               <img :src="usFlag" alt="English" class="h-6 w-auto" :class="{ 'grayscale opacity-50': $i18n.locale !== 'en' }" />
             </button>
-            <button @click="$i18n.locale = 'pt'" class="p-1 rounded">
+            <button @click="setLanguage('pt')" class="p-1 rounded">
               <img :src="brFlag" alt="Português" class="h-6 w-auto" :class="{ 'grayscale opacity-50': $i18n.locale !== 'pt' }" />
             </button>
           </div>

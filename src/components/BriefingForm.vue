@@ -35,12 +35,35 @@ const handleSubmit = async () => {
 
   isLoading.value = true;
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Send form data to Netlify Function
+    const response = await fetch('/api/submit-form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        siteType: form.siteType,
+        technologies: form.technologies,
+        budget: form.budget,
+        timeline: form.timeline,
+        requirements: form.requirements
+      }),
+    });
+
+    const result = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(result.message || 'Failed to submit form');
+    }
+    
     resetForm();
     alert(t('form.success'));
   } catch (error) {
-    alert(t('form.error'));
+    console.error('Error submitting form:', error);
+    alert(t('form.error') + (error instanceof Error ? `: ${error.message}` : ''));
   } finally {
     isLoading.value = false;
   }
