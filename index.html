@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing - Desenvolvimento de Sites</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-4">
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h1 class="text-2xl font-bold text-gray-800 border-b pb-2 mb-6">Briefing para Site</h1>
+
+    <form class="space-y-6">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Título do Projeto*</label>
+        <input type="text" required
+               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Descrição Detalhada*</label>
+        <textarea required rows="5"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"></textarea>
+        <p class="text-sm text-gray-500 mt-1">Mínimo 125 caracteres</p>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Tipo de Site*</label>
+        <div class="space-y-2">
+          <label class="flex items-center">
+            <input type="radio" name="siteType" class="mr-2" required>
+            Institucional
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="siteType" class="mr-2">
+            Landing Page
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="siteType" class="mr-2">
+            E-commerce
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="siteType" class="mr-2">
+            Blog
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Tecnologias*</label>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2">
+            WordPress
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2">
+            E-commerce
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2">
+            Nuxt
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2">
+            Laravel
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2">
+            Vue.js
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">Prazo*</label>
+        <div class="flex flex-wrap gap-4">
+          <label class="flex items-center">
+            <input type="radio" name="deadline" class="mr-2" required>
+            1 semana
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="deadline" class="mr-2">
+            2 semanas
+          </label>
+          <label class="flex items-center">
+            <input type="radio" name="deadline" class="mr-2">
+            1 mês
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Anexos (opcional)</label>
+        <input type="file" class="w-full border rounded-lg p-2">
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+        Enviar Briefing
+      </button>
+    </form>
+  </div>
+</body>
+</html>
