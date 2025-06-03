@@ -6,6 +6,9 @@ import { useForm } from '../composables/useForm';
 const { t } = useI18n();
 const isLoading = ref(false);
 const textarea = ref<HTMLTextAreaElement | null>(null);
+const showNotification = ref(false);
+const notificationMessage = ref('');
+const notificationType = ref('success');
 
 const {
   form,
@@ -60,10 +63,24 @@ const handleSubmit = async () => {
     }
     
     resetForm();
-    alert(t('form.success'));
+    notificationMessage.value = t('form.success');
+    notificationType.value = 'success';
+    showNotification.value = true;
+    
+    // Auto-hide notification after 5 seconds
+    setTimeout(() => {
+      showNotification.value = false;
+    }, 5000);
   } catch (error) {
     console.error('Error submitting form:', error);
-    alert(t('form.error') + (error instanceof Error ? `: ${error.message}` : ''));
+    notificationMessage.value = t('form.error') + (error instanceof Error ? `: ${error.message}` : '');
+    notificationType.value = 'error';
+    showNotification.value = true;
+    
+    // Auto-hide notification after 5 seconds
+    setTimeout(() => {
+      showNotification.value = false;
+    }, 5000);
   } finally {
     isLoading.value = false;
   }
@@ -71,7 +88,68 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg space-y-6">
+  <div class="relative">
+    <!-- Notification Component -->
+    <transition
+      enter-active-class="transform transition duration-300 ease-out"
+      enter-from-class="translate-y-2 opacity-0"
+      enter-to-class="translate-y-0 opacity-100"
+      leave-active-class="transform transition duration-200 ease-in"
+      leave-from-class="translate-y-0 opacity-100"
+      leave-to-class="translate-y-2 opacity-0"
+    >
+      <div 
+        v-if="showNotification" 
+        class="fixed top-4 right-4 z-50 max-w-md shadow-lg rounded-lg overflow-hidden"
+        :class="{
+          'bg-green-50 border-l-4 border-green-500': notificationType === 'success',
+          'bg-red-50 border-l-4 border-red-500': notificationType === 'error'
+        }"
+      >
+        <div class="p-4 flex items-start">
+          <div class="flex-shrink-0">
+            <!-- Success Icon -->
+            <svg v-if="notificationType === 'success'" class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <!-- Error Icon -->
+            <svg v-if="notificationType === 'error'" class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p 
+              class="text-sm font-medium"
+              :class="{
+                'text-green-800': notificationType === 'success',
+                'text-red-800': notificationType === 'error'
+              }"
+            >
+              {{ notificationMessage }}
+            </p>
+          </div>
+          <div class="ml-auto pl-3">
+            <div class="-mx-1.5 -my-1.5">
+              <button 
+                @click="showNotification = false" 
+                class="inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                :class="{
+                  'text-green-500 hover:bg-green-100 focus:ring-green-600 focus:ring-offset-green-50': notificationType === 'success',
+                  'text-red-500 hover:bg-red-100 focus:ring-red-600 focus:ring-offset-red-50': notificationType === 'error'
+                }"
+              >
+                <span class="sr-only">Close</span>
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <form @submit.prevent="handleSubmit" class="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-lg space-y-6">
     <div>
       <label class="block text-gray-700 font-medium mb-2">{{ t('form.name') }}*</label>
       <input
@@ -273,4 +351,5 @@ const handleSubmit = async () => {
       <span v-else>{{ t('form.submit') }}</span>
     </button>
   </form>
+  </div>
 </template>

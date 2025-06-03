@@ -1,7 +1,7 @@
 // Import required packages
-const handlebars = require('handlebars');
-const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
+import handlebars from 'handlebars';
+import nodemailer from 'nodemailer';
+import nodemailerMailgunTransport from 'nodemailer-mailgun-transport';
 
 // Ensure URLSearchParams is available in Node.js environment
 const {
@@ -17,10 +17,10 @@ const options = {
   // host: 'api.eu.mailgun.net' // e.g. for EU region
 };
 
-const transporter = nodemailer.createTransport(mg(options));
+const transporter = nodemailer.createTransport(nodemailerMailgunTransport(options));
 
 // Function to process form submissions
-exports.handler = async function(event, context) {
+export const handler = async function(event, context) {
   // Only allow POST requests
   if (event.httpMethod !== "POST") {
     return {
@@ -108,7 +108,7 @@ exports.handler = async function(event, context) {
       {{#if company}}<p><strong>Company:</strong> {{company}}</p>{{/if}}
       <p><strong>Site Type:</strong> {{siteType}}</p>
       <p><strong>Technologies:</strong> {{technologies}}</p>
-      <p><strong>Budget:</strong> ${{budget}}</p>
+      <p><strong>Budget:</strong> {{dollarSign}}{{budget}}</p>
       <p><strong>Timeline:</strong> {{timeline}}</p>
       <h3>Project Requirements:</h3>
       <p>{{{requirements}}}</p>
@@ -124,6 +124,7 @@ exports.handler = async function(event, context) {
       company: data.company,
       siteType: formatSiteType(data.siteType),
       technologies: formatTechnologies(data.technologies),
+      dollarSign: '$',
       budget: data.budget,
       timeline: formatTimeline(data.timeline),
       requirements: data.requirements.replace(/\n/g, '<br>')
