@@ -66,7 +66,7 @@ describe('Briefing Form Test', () => {
       body: { success: true, message: 'Form submitted successfully' }
     }).as('formSubmit');
 
-    // Submit the empty form (should not pass validation)
+    // Test Case 1: Submit the empty form (should not pass validation)
     cy.get('button[type="submit"]').click({ force: true });
     
     // Wait a moment to ensure any async operations complete
@@ -80,6 +80,79 @@ describe('Briefing Form Test', () => {
       expect(interceptions.length).to.equal(0);
     });
     
+    // Test Case 2: Test with invalid email format
+    // Fill out some basic fields first
+    cy.get('input[type="text"]').first().clear().type('Test User');
+    cy.get('input[type="email"]').should('be.visible').clear().type('invalid-email-format'); // Invalid email
+    cy.get('input[type="text"]:visible').eq(1).clear().type('Test Company');
+    cy.get('input[value="institutional"]').check();
+    cy.get('input[value="vuejs"]').check();
+    cy.get('input[type="number"]').clear().type('1000');
+    cy.get('input[value="1_month"]').check();
+    cy.get('textarea').clear().type('This is a detailed description of the project requirements. I need a website that showcases my products and services.');
+    
+    // Submit the form with invalid email
+    cy.get('button[type="submit"]').click();
+    
+    // Wait a moment to ensure any async operations complete
+    cy.wait(1000);
+    
+    // Verify the form is still visible and API call was NOT made
+    cy.get('form').should('be.visible');
+    cy.get('@formSubmit.all').then(interceptions => {
+      expect(interceptions.length).to.equal(0);
+    });
+    
+    // Test Case 3: Test with description too short
+    // Fix the email to be valid
+    cy.get('input[type="email"]').clear().type('test@example.com');
+    // Add a very short description (assuming the form requires longer text)
+    cy.get('textarea').clear().type('Too short description');
+    
+    // Submit the form with too short description
+    cy.get('button[type="submit"]').click();
+    
+    // Wait a moment to ensure any async operations complete
+    cy.wait(1000);
+    
+    // Verify the form is still visible and API call was NOT made
+    cy.get('form').should('be.visible');
+    cy.get('@formSubmit.all').then(interceptions => {
+      expect(interceptions.length).to.equal(0);
+    });
+    
+    // Test Case 4: Test with missing required fields
+    // Reset form
+    cy.reload();
+    cy.wait(1000);
+    
+    // Mock the form submission again after reload
+    cy.intercept('POST', '/api/submit-form', {
+      statusCode: 200,
+      body: { success: true, message: 'Form submitted successfully' }
+    }).as('formSubmit');
+    
+    // Fill only some fields, leaving others empty
+    cy.get('input[type="text"]').first().clear().type('Test User');
+    cy.get('input[type="email"]').should('be.visible').clear().type('test@example.com');
+    // Leaving company name empty
+    // Leaving site type unselected
+    cy.get('input[value="vuejs"]').check();
+    cy.get('input[type="number"]').clear().type('1000');
+    // Leaving timeline unselected
+    
+    // Submit the form with missing fields
+    cy.get('button[type="submit"]').click();
+    
+    // Wait a moment to ensure any async operations complete
+    cy.wait(1000);
+    
+    // Verify the form is still visible and API call was NOT made
+    cy.get('form').should('be.visible');
+    cy.get('@formSubmit.all').then(interceptions => {
+      expect(interceptions.length).to.equal(0);
+    });
+    
     // Now verify we can fill and submit the form correctly after validation failure
     // Fill the form with valid data
     cy.get('input[type="text"]').first().clear().type('Test User');
@@ -89,7 +162,7 @@ describe('Briefing Form Test', () => {
     cy.get('input[value="vuejs"]').check();
     cy.get('input[type="number"]').clear().type('1000');
     cy.get('input[value="1_month"]').check();
-    cy.get('textarea').clear().type('This is a detailed description of the project requirements. I need a website that showcases my products and services. It should have multiple pages, contact forms, and be responsive.');
+    cy.get('textarea').clear().type('This is a detailed description of the project requirements. I need a website that showcases my products and services. It should have multiple pages, contact forms, and be responsive. Please make it look professional and modern.');
     
     // Submit the form with valid data
     cy.get('button[type="submit"]').click();
