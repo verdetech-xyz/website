@@ -1,7 +1,7 @@
 describe('Briefing Form Test', () => {
   beforeEach(() => {
     // Visit the page containing the form
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
     
     // Mock the form submission API call to prevent actual form submission during testing
     cy.intercept('POST', '/api/submit-form', {

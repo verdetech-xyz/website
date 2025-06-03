@@ -3,16 +3,16 @@
   publish = "dist"
   functions = "functions"
 
+[build.environment]
+  # Cache Cypress binary in local "node_modules" folder
+  # so Netlify caches it
+  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+
 [dev]
   command = "npm run vite-dev"
   port = 8080
   targetPort = 3000
   functionsPort = 8888
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
 
 [functions]
   node_bundler = "esbuild"
@@ -59,3 +59,49 @@
     "nunjucks",
     "twing"
   ]
+
+[[plugins]]
+# Runs Cypress tests against the deployed URL
+package = "netlify-plugin-cypress"
+[plugins.inputs]
+  # Test the deployed URL
+  enable = true
+  record = true
+  group = 'deployed'
+
+[[plugins]]
+package = "netlify-plugin-checklinks"
+[plugins.inputs]
+  # An array of glob patterns for pages on your site
+  # Recursive traversal will start from these
+  entryPoints = [
+    "*.html",
+  ]
+  # Recurse through all the links and asset references on your page
+  recursive = true
+  # Makes the output easier on the eyes
+  pretty = true
+  # You can mark some checks as skipped
+  skipPatterns = []
+  # You can mark some checks as todo
+  todoPatterns = []
+  # Report on broken links to external pages (disabled to avoid brittle tests)
+  checkExternal = false
+  # Check references to source maps
+  followSourceMaps = false
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# The following redirect is for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*" # This defines which paths this specific [[headers]] block will cover.
+  [headers.values]
+    Permissions-Policy = "interest-cohort=()" # Opting your Website out of Google's FLoC Network
