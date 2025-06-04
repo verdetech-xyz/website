@@ -82,7 +82,7 @@ const goToRegistration = () => {
 
 <template>
   <div class="flex items-center justify-center py-20 min-h-[600px]">
-      <div class="max-w-md w-full space-y-8">
+      <div class="flex flex-col w-[420px] space-y-8">
         <div class="text-center">
           <h2 class="mt-6 text-3xl font-extrabold text-gray-900">{{ t('auth.login.title') }}</h2>
           <p class="mt-2 text-sm text-gray-600">
