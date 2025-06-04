@@ -7,6 +7,11 @@ import AdminPage from '../views/AdminPage.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    name: 'Home',
+    component: HomePage
+  },
+  {
+    path: '/register',
     name: 'Registration',
     component: RegistrationPage
   },
@@ -14,11 +19,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'Login',
     component: LoginPage
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomePage
   },
   {
     path: '/admin',
