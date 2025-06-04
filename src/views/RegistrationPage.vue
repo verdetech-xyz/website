@@ -10,14 +10,12 @@ interface FormState {
   email: string;
   password: string;
   confirmPassword: string;
-  rememberMe: boolean;
 }
 
 const form = reactive<FormState>({
   email: '',
   password: '',
-  confirmPassword: '',
-  rememberMe: false
+  confirmPassword: ''
 });
 
 // Variável para controlar a exibição do campo de confirmação de senha
@@ -67,7 +65,7 @@ const submitForm = async () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     // In a real app, you would register with your backend
-    console.log('Registration attempted:', { email: form.email, rememberMe: form.rememberMe });
+    console.log('Registration attempted:', { email: form.email });
     
     // After successful registration, redirect to home page
     router.push('/home');
@@ -139,22 +137,6 @@ const goToLogin = () => {
             </div>
           </div>
           
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input id="remember-me" name="remember-me" type="checkbox"
-                     v-model="form.rememberMe"
-                     class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded" />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-900">
-                {{ t('auth.login.rememberMe') }}
-              </label>
-            </div>
-            
-            <div class="text-sm">
-              <a href="#" class="font-medium text-green-600 hover:text-green-500">
-                {{ t('auth.login.forgotPassword') }}
-              </a>
-            </div>
-          </div>
           
           <div>
             <button type="submit"
