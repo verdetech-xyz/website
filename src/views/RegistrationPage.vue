@@ -128,7 +128,7 @@ const goToLogin = () => {
 </script>
 
 <template>
-  <div class="flex-1 flex items-center justify-center">
+  <div class="flex items-center justify-center py-8">
       <div class="max-w-md w-full space-y-8">
         <div class="text-center">
           <h2 class="mt-6 text-3xl font-extrabold text-gray-900">{{ t('auth.register.title') }}</h2>

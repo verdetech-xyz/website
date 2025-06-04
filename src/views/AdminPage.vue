@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100">
+  <div class="bg-gray-100 w-full min-h-[calc(100vh-160px)]">
 
     <!-- Admin Content -->
     <div class="container mx-auto px-6 py-8">

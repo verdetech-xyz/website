@@ -9,14 +9,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50/90">
+  <div class="flex flex-col min-h-screen bg-gray-50/90">
     <Navbar />
     
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <slot></slot>
     </main>
 
-    <Footer />
+    <Footer class="mt-auto" />
   </div>
 </template>
 
