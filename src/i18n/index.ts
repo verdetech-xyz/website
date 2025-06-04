@@ -65,6 +65,42 @@ const messages = {
       technologiesRequired: 'At least one technology must be selected',
       requirementsRequired: 'Requirements are required',
       requirementsLength: 'Requirements must be at least 125 characters'
+    },
+    auth: {
+      fields: {
+        name: 'Name',
+        email: 'Email',
+        password: 'Password',
+        confirmPassword: 'Confirm Password'
+      },
+      register: {
+        title: 'Create your account',
+        subtitle: 'Sign up to access VerdeTech platform',
+        submit: 'Sign Up',
+        submitting: 'Signing up...',
+        success: 'Account created successfully! Redirecting to login...',
+        alreadyHaveAccount: 'Already have an account?',
+        loginLink: 'Sign In'
+      },
+      login: {
+        title: 'Welcome back',
+        subtitle: 'Sign in to your account',
+        submit: 'Sign In',
+        processing: 'Signing in...',
+        rememberMe: 'Remember me',
+        forgotPassword: 'Forgot password?',
+        noAccount: "Don't have an account?",
+        registerLink: 'Sign Up',
+        invalidCredentials: 'Invalid email or password'
+      },
+      errors: {
+        nameRequired: 'Name is required',
+        emailRequired: 'Email is required',
+        emailInvalid: 'Invalid email format',
+        passwordRequired: 'Password is required',
+        passwordLength: 'Password must be at least 8 characters',
+        passwordMismatch: 'Passwords do not match'
+      }
     }
   },
   pt: {
@@ -131,6 +167,42 @@ const messages = {
       technologiesRequired: 'Pelo menos uma tecnologia deve ser selecionada',
       requirementsRequired: 'Os requisitos são obrigatórios',
       requirementsLength: 'Os requisitos devem ter pelo menos 125 caracteres'
+    },
+    auth: {
+      fields: {
+        name: 'Nome',
+        email: 'Email',
+        password: 'Senha',
+        confirmPassword: 'Confirmar Senha'
+      },
+      register: {
+        title: 'Crie sua conta',
+        subtitle: 'Cadastre-se para acessar a plataforma VerdeTech',
+        submit: 'Cadastrar',
+        submitting: 'Cadastrando...',
+        success: 'Conta criada com sucesso! Redirecionando para o login...',
+        alreadyHaveAccount: 'Já possui uma conta?',
+        loginLink: 'Entrar'
+      },
+      login: {
+        title: 'Bem-vindo de volta',
+        subtitle: 'Entre em sua conta',
+        submit: 'Entrar',
+        processing: 'Entrando...',
+        rememberMe: 'Lembrar de mim',
+        forgotPassword: 'Esqueceu a senha?',
+        noAccount: 'Não tem uma conta?',
+        registerLink: 'Cadastre-se',
+        invalidCredentials: 'Email ou senha inválidos'
+      },
+      errors: {
+        nameRequired: 'Nome é obrigatório',
+        emailRequired: 'Email é obrigatório',
+        emailInvalid: 'Formato de email inválido',
+        passwordRequired: 'Senha é obrigatória',
+        passwordLength: 'A senha deve ter pelo menos 8 caracteres',
+        passwordMismatch: 'As senhas não coincidem'
+      }
     }
   }
 };
