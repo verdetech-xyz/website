@@ -84,8 +84,8 @@ const goToLogin = () => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center py-20 min-h-[600px]">
-      <div class="flex flex-col w-[420px] space-y-8">
+  <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 min-h-[600px]">
+      <div class="flex flex-col w-full max-w-[420px] space-y-8">
         <div class="text-center">
           <h2 class="mt-6 text-3xl font-extrabold text-gray-900">{{ t('auth.register.title') }}</h2>
           <p class="mt-2 text-sm text-gray-600">
@@ -137,7 +137,6 @@ const goToLogin = () => {
             </div>
           </div>
           
-          
           <div>
             <button type="submit"
                     :disabled="isSubmitting"
@@ -157,4 +156,3 @@ const goToLogin = () => {
       </div>
   </div>
 </template>
-
