@@ -2,7 +2,6 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import verdeTechLogo from '../assets/verdetech.png';
 
 const { t } = useI18n();
 const router = useRouter();
@@ -77,29 +76,13 @@ const submitForm = async () => {
 };
 
 const goToRegistration = () => {
-  router.push('/');
+  router.push('/register');
 };
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50/90 flex flex-col">
-    <!-- Header with logo -->
-    <nav class="bg-white/90 backdrop-blur-sm shadow-sm sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <a href="/" class="flex">
-              <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-12 w-auto mr-2" />
-              <span class="text-xl font-bold text-green-400 pt-3">Verde<span class="text-blue-600">Tech</span></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-    
-    <!-- Main content -->
-    <main class="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-md w-full space-y-8">
+  <div class="flex items-center justify-center py-20 min-h-[600px]">
+      <div class="flex flex-col w-[420px] space-y-8">
         <div class="text-center">
           <h2 class="mt-6 text-3xl font-extrabold text-gray-900">{{ t('auth.login.title') }}</h2>
           <p class="mt-2 text-sm text-gray-600">
@@ -176,17 +159,6 @@ const goToRegistration = () => {
           </div>
         </form>
       </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-center">
-          <img :src="verdeTechLogo" alt="VerdeTech Logo" class="h-8 w-auto mr-2" />
-          <p class="pt-2">&copy; {{ new Date().getFullYear() }} {{ t('brand.name') }}</p>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 

@@ -1,26 +1,28 @@
 <script setup lang="ts">
+import MainLayout from './components/layout/MainLayout.vue';
 import { onMounted } from 'vue';
 
+// Adicionar classe ao body para impedir movimentação da barra de rolagem
 onMounted(() => {
-  document.body.classList.add('fade-in');
+  document.body.classList.add('overflow-y-scroll');
 });
 </script>
 
 <template>
-  <router-view />
+  <MainLayout>
+    <router-view />
+  </MainLayout>
 </template>
 
 <style>
-.fade-in {
-  animation: fadeIn 1s ease-in;
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+body {
+  /* Forçar a barra de rolagem sempre visível para evitar pulos durante a navegação */
+  overflow-y: scroll;
 }
 </style>
