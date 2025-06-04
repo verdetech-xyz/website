@@ -1,20 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <!-- Admin Header -->
-    <header class="bg-green-600 shadow-lg">
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <h1 class="text-white text-2xl font-bold">VerdeTech Admin</h1>
-          </div>
-          <div class="flex space-x-4">
-            <button class="text-white hover:bg-green-700 px-3 py-2 rounded-md">Notificações</button>
-            <button class="text-white hover:bg-green-700 px-3 py-2 rounded-md">Perfil</button>
-            <button class="bg-red-500 text-white hover:bg-red-600 px-3 py-2 rounded-md">Sair</button>
-          </div>
-        </div>
-      </div>
-    </header>
+  <div class="bg-gray-100">
 
     <!-- Admin Content -->
     <div class="container mx-auto px-6 py-8">
