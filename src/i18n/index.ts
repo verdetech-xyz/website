@@ -2,6 +2,12 @@ import { createI18n } from 'vue-i18n';
 
 const messages = {
   en: {
+    nav: {
+      home: 'Home',
+      register: 'Sign Up',
+      login: 'Sign In',
+      admin: 'Admin Panel'
+    },
     brand: {
       name: 'VerdeTech'
     },
@@ -104,6 +110,12 @@ const messages = {
     }
   },
   pt: {
+    nav: {
+      home: 'Início',
+      register: 'Cadastro',
+      login: 'Entrar',
+      admin: 'Painel Admin'
+    },
     brand: {
       name: 'VerdeTech'
     },
